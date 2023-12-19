@@ -8,9 +8,33 @@
     <link href="//cdn.staticfile.org/Primer/21.0.7/primer.css" rel="stylesheet" />
     <link rel="icon" href="https://raw.githubusercontent.com/i5NWkv9NH1/i5NWkv9NH1.github.io/main/public/favicon.ico">
     <script>
-        if(localStorage.getItem("meek_theme")==null){}
-        else if(localStorage.getItem("meek_theme")=="dark"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="dark";}
-        else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
+        const query = window.matchMedia('(prefers-color-scheme: dark)');
+        const isDark = query.matches
+        query.addEventListener('change', _ => {
+            if(isDark) {
+                document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="dark";
+                localStorage.setItem('meek_theme', 'dark')
+            } else {
+                document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";
+                localStorage.setItem('meek_theme', 'light')
+            }
+        });
+        //* localstore -> match device
+        if(localStorage.getItem("meek_theme")==null){
+            if(isDark) {
+                document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="dark";
+                localStorage.setItem('meek_theme', 'dark')
+            } else {
+                document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";
+                localStorage.setItem('meek_theme', 'light')
+            }
+        }
+        else if(localStorage.getItem("meek_theme")=="dark"){
+            document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="dark";
+        }
+        else if(localStorage.getItem("meek_theme")=="light"){
+            document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";
+        }
     </script>
     
 <title>药屋少女的呢喃</title>
