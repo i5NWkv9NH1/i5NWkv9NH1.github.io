@@ -8,7 +8,8 @@ import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
-import { SOCIALS } from "@config";
+import { SOCIALS, SITE } from "@config";
+import { md5 } from "hash-wasm";
 
 const posts = await getCollection("blog");
 
@@ -17,13 +18,16 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
+
+const { email, author } = SITE;
+const hash = await md5(email);
 ---
 
 <Layout>
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1>Mingalaba</h1>
+      <h1>{author}</h1>
       <a
         target="_blank"
         href="/rss.xml"
@@ -41,21 +45,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
+      {
+        email && (
+          <img
+            src={`http://www.gravatar.com/avatar/${hash}?size=999`}
+            class="rounded-xl w-40"
+          />
+        )
+      }
+
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (

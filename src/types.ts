@@ -2,7 +2,9 @@ import type socialIcons from "@assets/socialIcons";
 
 export type Site = {
   website: string;
+  favicon: string;
   author: string;
+  email: string;
   desc: string;
   title: string;
   ogImage?: string;
