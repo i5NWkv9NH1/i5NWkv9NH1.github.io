@@ -2,7 +2,7 @@ import type { Site, SocialObjects } from "./types";
 import { md5 } from "hash-wasm";
 
 export const SITE: Site = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
+  website: "https://i5NWkv9NH1.github.io", // replace this with your deployed domain
   author: "Sora",
   email: "sloananna326@gmail.com",
   // email: 'jannarin@protonmail.com',
