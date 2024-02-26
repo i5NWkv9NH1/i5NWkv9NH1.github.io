@@ -14,7 +14,6 @@ export interface Props {
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
-  favicon: string;
 }
 
 const {
@@ -26,14 +25,13 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
-  favicon = SITE.favicon,
 } = Astro.props;
 
 const socialImageURL = new URL(
   ogImage ?? SITE.ogImage ?? "og.png",
   Astro.url.origin
 ).href;
-const getFavicon = favicon || "/favicon.svg" || "/favicon.ico";
+// const getFavicon = favicon || "/favicon.svg" || "/favicon.ico";
 ---
 
 <!doctype html>
@@ -44,7 +42,10 @@ const getFavicon = favicon || "/favicon.svg" || "/favicon.ico";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href={getFavicon} />
+    <!--
+      <link rel="icon" type="image/xml+svg" href='/favicon.svg' />
+    -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
