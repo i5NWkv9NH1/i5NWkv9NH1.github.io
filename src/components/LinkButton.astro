@@ -10,14 +10,7 @@ export interface Props {
   target?: HTMLAttributeAnchorTarget;
 }
 
-const {
-  href,
-  className,
-  ariaLabel,
-  title,
-  disabled = false,
-  target = "_blank",
-} = Astro.props;
+const { href, className, ariaLabel, title, disabled = false } = Astro.props;
 ---
 
 {
@@ -36,7 +29,6 @@ const {
       class={`group inline-block hover:text-skin-accent ${className}`}
       aria-label={ariaLabel}
       title={title}
-      target={target}
     >
       <slot />
     </a>
