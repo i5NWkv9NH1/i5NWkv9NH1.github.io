@@ -1,6 +1,12 @@
-> @open-wc 已更新模板，文章的代码不具有参考性。正在更新中...
+---
+title: 使用 Lit & @open-wc 构建 Web Components
+pubDatetime: 2024-06-29
+description: 使用 Lit & @open-wc 构建 Web Components
+featured: false
+draft
+---
 
-
+> @open-wc 已更新初始化文件模板，文章的代码不具有参考性。正在更新中...
 ## 前言
 
 在这篇文章里，将一起构建一个 Web 组件，把 Medium 的 RSS 源转化成一系列可以添加到博客或 Web 应用中的预览卡片。
