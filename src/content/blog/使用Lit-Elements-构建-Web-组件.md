@@ -3,7 +3,7 @@ title: 使用 Lit & @open-wc 构建 Web Components
 pubDatetime: 2024-06-29
 description: 使用 Lit & @open-wc 构建 Web Components
 featured: false
-draft
+draft: false
 ---
 
 > @open-wc 已更新初始化文件模板，文章的代码不具有参考性。正在更新中...
