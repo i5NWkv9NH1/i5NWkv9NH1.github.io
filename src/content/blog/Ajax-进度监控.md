@@ -1,0 +1,92 @@
+---
+title: Ajax 进度监控
+---
+
+## 前言
+
+在开发中，我们常用 Ajax 来发送请求。请求有两种常见方式：传统的 XML Http Request 和 Fetch API。而流行的库 axios 是基于 XML Http Request 的，而 umi-request 则是基于 Fetch 的。
+
+两种区别如下：
+
+![](https://s2.loli.net/2024/08/28/HtBRGoQXcp6Ugi7.png)
+
+## 为什么需要进度监控？
+
+进度监控分为两种：请求进度监控和响应进度监控。
+
+1. **请求进度监控**：当我们上传大量数据到服务器时，想知道上传进度，能让用户知道数据是否正在传输。
+2. **响应进度监控**：当服务器向我们发送大量数据时，我们也希望看到下载进度，以便用户知道下载是否还在继续。
+
+尤其是当数据量比较大时，显示进度能让用户觉得网页没有卡死，增强用户体验。
+
+## 解决方案
+
+### 基于 XML Http Request
+
+XML Http Request (XHR) 提供了简单的进度监控方式。XHR 有一个 `progress` 事件，当数据传输时会触发这个事件。我们可以通过 `loaded` 和 `total` 来获取当前传输的字节数和总字节数。
+
+```ts
+const xhr = new XMLHttpRequest();
+xhr.open('GET', '/file/uuid');
+xhr.addEventListener('progress', (e) => {
+  if (e.lengthComputable) {
+    const percent = (e.loaded / e.total) * 100;
+    console.log(`打开文件：${percent.toFixed(2)}%`);
+  }
+});
+xhr.onload = () => {
+  if (xhr.status === 200) {
+    console.log('打开完成');
+  }
+};
+xhr.send();
+
+```
+
+在这个例子中，我们使用 `xhr.addEventListener('progress', ...)` 来监听进度事件，并计算上传进度百分比。
+
+### 基于 Fetch
+
+Fetch API 的进度监控稍微复杂一点。我们需要先获取数据的总大小，然后逐步读取数据，并跟踪已经读取的数据量。
+
+因为Fetch 返回的是一个可读流 (Readable Stream)，这意味着我们可以逐步读取响应的数据块。
+
+1. **获取总数据量**：首先，我们可以通过响应头的 `Content-Length` 获取数据的总大小。
+2. **读取数据流**：`response.body` 是一个可读流对象，通过 `getReader()` 方法可以获取一个 `ReadableStreamDefaultReader` 对象，用于逐步读取数据。
+
+```ts
+const response = await fetch('/file/uuid');
+
+// 获取内容长度
+const total = +response.headers.get('Content-Length');
+const decoder = new TextDecoder();
+let body = '';
+const reader = response.body.getReader();
+let loaded = 0;
+
+while (true) {
+  // 读取数据
+  const { done, value } = await reader.read();
+  
+  if (done) break; // 如果数据读取完成，退出循环
+
+  loaded += value.length; // 累加已加载的字节数
+  body += decoder.decode(value, { stream: true });
+  
+  // 计算并输出下载进度
+  const percent = (loaded / total) * 100;
+  console.log(`下载进度：${percent.toFixed(2)}%`);
+  
+  // 这里可以更新 UI，比如进度条
+}
+
+console.log('下载完成');
+
+```
+
+在这个例子中，我们使用 `response.body.getReader()` 获取一个 `ReadableStreamDefaultReader` 对象。`getReader` 方法允许我们逐步读取响应流中的数据块。每次调用 `reader.read()` 会返回一个包含 `value` 和 `done` 属性的对象：
+
+- `value` 是当前读取的数据块。
+- `done` 是一个布尔值，表示流是否已读取完毕。
+
+通过累加 `value.length`，我们可以跟踪已下载的数据量，并计算下载进度百分比。

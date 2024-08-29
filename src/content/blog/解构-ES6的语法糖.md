@@ -8,7 +8,7 @@ draft: false
 
 ## 什么是解构？
 
-​![ezgif-5-bb7e6d6c01.gif](https://s2.loli.net/2024/02/25/6XetYl7QFc8zMLy.gif)​
+![ezgif-5-bb7e6d6c01.gif](https://s2.loli.net/2024/02/25/6XetYl7QFc8zMLy.gif)​
 
 解构是一种创建新变量的语法糖，可以快速提取当前数组或对象的数据，并且可以重新命名提取的数据，使代码更简洁。实际上，非常简单，通过几个实际例子就能发现它的用途很多且很易懂。
 
@@ -16,7 +16,7 @@ draft: false
 
 ### 野餐时间
 
-例如，现在你有一个名为 `basket`​ 的数组，里面有三种食物，分别是 🍎、🥪、🧃，想要取出里面的苹果和三明治就可以这样写：
+假设你有一个数组 `basket`，里面放了三样东西：🍎、🥪 和 🧃。如果你只想从中提取出苹果和三明治，可以这样写：
 
 ```ts
 const basket = ["🍎", "🥪", "🧃"];
@@ -26,11 +26,11 @@ console.log(apple, sandwich);
 // 🍎 🥪
 ```
 
-这里 `apple`​ 和 `sandwich`​ 的名称是可以自行决定的，代表在这个新变量中，会取出 `basket`​ 数组中的第一个和第二个内容。
+在这里，`apple` 和 `sandwich` 就是从 `basket` 数组中取出的第一个和第二个元素。你可以自己定义这些名字。
 
 ### 跳过数据
 
-那假如我们想要取出 `apple`​ 和 `juice`​ 这两个食物，除开 `sandwich`​，则可以这样写：
+如果你只想提取 `apple` 和 `juice`，而不需要 `sandwich`，可以这样写：
 
 ```ts
 const basket = ["🍎", "🥪", "🧃"];
@@ -44,7 +44,7 @@ console.log(apple, juice);
 
 ### 观察一：解构参数
 
-例如，目前有一个 `sayHappyBirthday`​ 函数，它会接收一个人物对象，并且在函数内部会用到这个人物的 `name`​ 与 `age`​ 两个属性，这时候可以这样写：
+假设你一个 `sayHappyBirthday` 函数，它接收一个包含 `name` 和 `age` 的对象。如果你用解构来提取这两个属性，代码会更简洁：
 
 ```ts
 function sayHappyBirthday({ name, age }) {
@@ -76,4 +76,4 @@ const sandwich = basket[1];
 const juice = basket[2];
 ```
 
-但可能现在明白解构语法糖的威力了，快去尝试吧！
+现在用解构语法，可以让代码更简洁。快去试试吧。
