@@ -1,9 +1,8 @@
 import type { Site, SocialObjects } from "./types";
-import { md5 } from "hash-wasm";
 
 export const SITE: Site = {
   website: "https://i5NWkv9NH1.github.io", // replace this with your deployed domain
-  author: "Sora",
+  author: "sora",
   email: "sloananna326@gmail.com",
   // email: 'jannarin@protonmail.com',
   desc: "",
@@ -13,6 +12,19 @@ export const SITE: Site = {
   postPerPage: 6,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes,
 };
+
+export const PROJECTS = [
+  {
+    title: "Mind Map",
+    href: "https://github.com",
+    description: "A Simply Mind Map build with Vuetify.js",
+  },
+  {
+    title: "RBAC system",
+    href: "https://github.com",
+    description: "RBAC system build with Vuetify.js and Nest.js",
+  },
+];
 
 export const LOCALE = {
   lang: "zh", // html lang code. Set this empty and default will be "en"
@@ -53,9 +65,9 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "sloananna326@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
-    active: false,
+    active: true,
   },
   {
     name: "Twitter",
