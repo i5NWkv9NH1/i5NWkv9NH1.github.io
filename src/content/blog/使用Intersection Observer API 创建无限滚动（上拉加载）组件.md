@@ -1,9 +1,9 @@
 ---
 title: 使用 Intersection Observer API 创建无限滚动（上拉加载）组件
 pubDatetime: 2024-02-10
-description: 使用 Intersection Observer API 创建无限滚动（上拉加载）组件
-featured: false
-draft: false
+tags:
+  - JavaScript
+  - Vue.js
 ---
 
 ## 为什么需要无限滚动
@@ -16,7 +16,7 @@ draft: false
 
 在以前获取 DOM 元素的位置通常会使用 `getBoundingClientRect()`​ 方法，不过基于性能优化、更简洁的代码、更灵活的配置的考量，使用 Intersection Observer API 会是更好的选择。
 
-​`Intersection Observer API`​ [自 2019 年已经被各大浏览器广泛支持 🔗](https://caniuse.com/intersectionobserver)，其用途主要是检测 DOM 元素是否进入或离开另一个 DOM 元素或浏览器的视窗范围内，并且可以通过设置阈值来触发相应的事件。
+`Intersection Observer API`​ [自 2019 年已经被各大浏览器广泛支持 🔗](https://caniuse.com/intersectionobserver)，其用途主要是检测 DOM 元素是否进入或离开另一个 DOM 元素或浏览器的视窗范围内，并且可以通过设置阈值来触发相应的事件。
 
 其应用场景非常的广泛，包括常见的懒加载图片、元素可见性检测等，**无限滚动（上拉加载）** 就是其中的一个应用场景。
 
@@ -104,10 +104,10 @@ getCards(3, 2); // [{ title: '2' }, { title: '2' }, { title: '2' }]
 
 一个无限加载的列表必备的 Props 有：
 
-- ​`maxPage`​​ 最大页数
-- ​`perPage`​​ 每页数据数
-- ​`currentPage`​​ 当前页数
-- ​`isInView`​​ 是否在可视范围内
+- `maxPage`​​ 最大页数
+- `perPage`​​ 每页数据数
+- `currentPage`​​ 当前页数
+- `isInView`​​ 是否在可视范围内
 
 ```ts
 const infinteScrollOptions = {

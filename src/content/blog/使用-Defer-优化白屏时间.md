@@ -1,5 +1,10 @@
 ---
 title: 使用 Defer 优化白屏时间
+pubDatetime: 2024-08-30
+draft: true
+tags:
+  - JavaScript
+  - Vue.js
 ---
 
 ## 前言
@@ -9,11 +14,11 @@ title: 使用 Defer 优化白屏时间
 ```vue
 <!-- Parent.vue -->
 <template>
-	<VContainer>
-  	<VSheet v-for='item in 100'>
-  		<!--  -->
+  <VContainer>
+    <VSheet v-for="item in 100">
+      <!--  -->
       <Anything />
-  	</VSheet>
+    </VSheet>
   </VContainer>
 </template>
 ```
@@ -56,7 +61,7 @@ JavaScript 是**单线程**的，这意味着它只能一次执行一个任务�
 
 ```ts
 // useDefer.ts
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 
 /**
  * useDefer 钩子用于在 Vue 组件中实现延迟渲染功能。
@@ -107,23 +112,23 @@ export function useDefer(maxCount = 100) {
 
 ```vue
 <!-- Example -->
-<Comp_ v-if="defer(0)"  />
-<Comp_ v-if="defer(1)"  />
-<CompB v-if="defer(4)"  />
-<CompB v-if="defer(10)"  />
+<Comp_ v-if="defer(0)" />
+<Comp_ v-if="defer(1)" />
+<CompB v-if="defer(4)" />
+<CompB v-if="defer(10)" />
 
 <!-- Parent.vue -->
 <template>
-	<VContainer>
-  	<VSheet v-for='item in 100'>
-  		<!--  -->
-      <Anything  v-if='defer(item)' />
-  	</VSheet>
+  <VContainer>
+    <VSheet v-for="item in 100">
+      <!--  -->
+      <Anything v-if="defer(item)" />
+    </VSheet>
   </VContainer>
 </template>
 
 <script setup>
-const defer = useDefer()
+const defer = useDefer();
 </script>
 ```
 
@@ -139,14 +144,14 @@ const defer = useDefer()
 </template>
 
 <script setup>
-import { useDefer } from './useDefer';
-import Comp from './Comp.vue';
-import CompA from './CompA.vue';
+import { useDefer } from "./useDefer";
+import Comp from "./Comp.vue";
+import CompA from "./CompA.vue";
 
 const defer = useDefer();
 const comps = [
-  { key: 'Comp_', component: Comp, defer: 1 },
-  { key: 'CompA', component: CompA, defer: 2 },
+  { key: "Comp_", component: Comp, defer: 1 },
+  { key: "CompA", component: CompA, defer: 2 },
   // ...
 ];
 </script>
@@ -159,4 +164,3 @@ const comps = [
 - **服务端渲染**：服务器端渲染可以在服务器端生成 HTML，减少客户端渲染时间。使用 Nuxt.js 等框架可以方便地实现 SSR。
 
 ## 参考链接
-

@@ -9,20 +9,44 @@ export const SITE: Site = {
   title: "ゆらぎ荘",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 6,
+  postPerPage: 20,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes,
 };
 
 export const PROJECTS = [
   {
     title: "Mind Map",
-    href: "https://github.com",
-    description: "A Simply Mind Map build with Vuetify.js",
+    href: "https://i5NWkv9NH1.github.io/mind-map",
+    description:
+      "A mindmap app built with Vuetify.js & SimpleMindMap.js for visualizing and organizing ideas.",
   },
   {
     title: "RBAC system",
-    href: "https://github.com",
-    description: "RBAC system build with Vuetify.js and Nest.js",
+    href: "https://github.com/i5NWkv9NH1/foundation-admin-backend",
+    description:
+      "A basic RBAC system using Vuetify.js and Nest.js for user access control.",
+  },
+  {
+    title: "ABC Notation",
+    href: "https://i5NWkv9NH1.github.io/score",
+    description:
+      "A tool for rendering sheet music using ABC.js with Markdown support.",
+  },
+  {
+    title: "Scrollbar",
+    href: "https://i5NWkv9NH1.github.io/scrollbar",
+    description: "Quick way to set styles of scrollbar build with Vuetify.js",
+  },
+  {
+    title: "Lightweight Creating Resume",
+    href: "https://github.com/i5NWkv9NH1/sora-cv-fe",
+    description: "",
+  },
+  {
+    title: "Hot News Crawler",
+    href: "https://github.com/i5NWkv9NH1/rebang",
+    description:
+      "A Nest.js crawler fetching hot search data from major Chinese platforms.",
   },
 ];
 

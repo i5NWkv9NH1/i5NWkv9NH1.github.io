@@ -4,14 +4,14 @@ export interface Props {
   href?: string;
   title: string;
   description?: string;
-  secHeading?: boolean;
+  disabled?: boolean;
 }
 
 export default function Project({
   href,
   title,
   description,
-  secHeading = true,
+  disabled = false,
 }: Props) {
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
@@ -25,10 +25,12 @@ export default function Project({
         target={"_blank"}
         className="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
       >
-        {secHeading ? (
-          <h2 {...headerProps}>{title}</h2>
+        {disabled ? (
+          <del>
+            <h2 {...headerProps}>{title}</h2>
+          </del>
         ) : (
-          <h3 {...headerProps}>{title}</h3>
+          <h2 {...headerProps}>{title}</h2>
         )}
       </a>
       <div className={`flex items-center space-x-2 opacity-80`}>
